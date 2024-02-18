@@ -3,6 +3,7 @@
         "blit",
         "blitme",
         "FULLSCREEN",
+        "groupcollide",
         "KEYDOWN",
         "KEYUP",
         "midbottom",
