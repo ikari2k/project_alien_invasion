@@ -8,6 +8,7 @@
         "KEYUP",
         "midbottom",
         "midtop",
-        "pygame"
+        "pygame",
+        "spritecollideany"
     ]
 }
