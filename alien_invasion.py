@@ -32,13 +32,18 @@ class AlienInvasion:
 
         self._create_fleet()
 
+        # Run game in active mode
+        self.game_active = True
+
     def run_game(self):
         """Starting game loop"""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+
             self._update_screen()
             self.clock.tick(60)
 
@@ -144,6 +149,9 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
+        # Identify aliens reaching bottom of the screen
+        self._check_aliens_bottom()
+
     def _update_screen(self):
         """Update images on screen and transition to next"""
         self.screen.fill(self.settings.bg_color)
@@ -157,19 +165,30 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """React on ship collision with alien"""
-        # Reduce value of ship_left
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
 
-        # Remove content of bullets and aliens lists
-        self.bullets.empty()
-        self.aliens.empty()
+            # Reduce value of ship_left
+            self.stats.ships_left -= 1
 
-        # Create new fleet and position new ship
-        self._create_fleet()
-        self.ship.center_ship()
+            # Remove content of bullets and aliens lists
+            self.bullets.empty()
+            self.aliens.empty()
 
-        # Pause
-        sleep(0.5)
+            # Create new fleet and position new ship
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Pause
+            sleep(0.5)
+        else:
+            self.game_active = False
+
+    def _check_aliens_bottom(self):
+        """Check if any alien reached bottom of the screen"""
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height:
+                self._ship_hit()
+                break
 
 
 if __name__ == "__main__":
