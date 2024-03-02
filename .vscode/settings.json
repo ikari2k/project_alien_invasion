@@ -2,12 +2,14 @@
     "cSpell.words": [
         "blit",
         "blitme",
+        "collidepoint",
         "FULLSCREEN",
         "groupcollide",
         "KEYDOWN",
         "KEYUP",
         "midbottom",
         "midtop",
+        "MOUSEBUTTONDOWN",
         "pygame",
         "spritecollideany"
     ]
