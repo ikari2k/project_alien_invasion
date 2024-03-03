@@ -15,13 +15,13 @@ class Settings:
         self.bullet_width = 5
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
-        self.bullets_allowed = 5
+        self.bullets_allowed = 8
 
         # Alien settings
         self.fleet_drop_speed = 10
 
         # Easy way to change game speed
-        self.speedup_scale = 1.1
+        self.speedup_scale = 1.2
 
         # Easy way to change points for each alien hit
         self.score_scale = 1.5
@@ -30,9 +30,9 @@ class Settings:
 
     def initialize_dynamic_settings(self):
         """Initializing dynamic settings in the game"""
-        self.ship_speed = 1.5
-        self.bullet_speed = 2.5
-        self.alien_speed = 1.0
+        self.ship_speed = 1.8
+        self.bullet_speed = 3
+        self.alien_speed = 1.3
 
         # Value 1 in fleet_direction means 'right', -1 means 'left'
         self.fleet_direction = 1
@@ -46,3 +46,4 @@ class Settings:
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
         self.alien_points = int(self.alien_points * self.score_scale)
+        self.fleet_drop_speed *= self.speedup_scale

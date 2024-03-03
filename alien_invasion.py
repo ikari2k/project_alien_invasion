@@ -74,6 +74,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
             self.game_active = True
 
             # Delete bullets and aliens
@@ -216,8 +217,9 @@ class AlienInvasion:
         """React on ship collision with alien"""
         if self.stats.ships_left > 0:
 
-            # Reduce value of ship_left
+            # Reduce value of ship_left and update scoreboard
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # Remove content of bullets and aliens lists
             self.bullets.empty()
